@@ -7,7 +7,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Set developer address and fee as constants
 const DEV_ADDRESS = 'tb1qr7u5nuyefz5kz63jtpuyjqk8jcwmz53rhrcuh3';
