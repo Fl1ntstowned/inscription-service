@@ -17,9 +17,13 @@ const corsOptions = {
     origin: 'https://frontspace-production.up.railway.app',
     methods: 'GET,PUT,POST,DELETE',
     credentials: true // enable set cookie
-  };
-app.use(cors());
+};
+
+// Apply CORS middleware with options
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
+
 
 // Set up storage engine for multer
 const storage = multer.diskStorage({
