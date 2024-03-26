@@ -12,7 +12,12 @@ const port = 3001;
 // Set developer address and fee as constants
 const DEV_ADDRESS = 'tb1qr7u5nuyefz5kz63jtpuyjqk8jcwmz53rhrcuh3';
 const DEV_FEE = 2000; // Developer fee in satoshis
-
+// Define CORS options to allow requests from your frontend domain
+const corsOptions = {
+    origin: 'https://frontspace-production.up.railway.app',
+    methods: 'GET,PUT,POST,DELETE',
+    credentials: true // enable set cookie
+  };
 app.use(cors());
 app.use(bodyParser.json());
 
