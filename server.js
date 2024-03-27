@@ -13,8 +13,20 @@ const port = process.env.PORT || 3001;
 const DEV_ADDRESS = 'tb1qr7u5nuyefz5kz63jtpuyjqk8jcwmz53rhrcuh3';
 const DEV_FEE = 2000; // Developer fee in satoshis
 // Define CORS options to allow requests from your frontend domain
+const allowedOrigins = [
+    'https://frontspace-production.up.railway.app',
+    'https://www.spacescribe.xyz',
+    
+];
+
 const corsOptions = {
-    origin: 'https://frontspace-production.up.railway.app',
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,PUT,POST,DELETE',
     credentials: true // enable set cookie
 };
