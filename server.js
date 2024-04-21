@@ -35,6 +35,23 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'no-referrer');
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload'); // 2 years
+    res.setHeader('Content-Security-Policy', 
+        "default-src 'self'; " +
+        "script-src 'self'; " +
+        "style-src 'self' 'unsafe-inline'; " +
+        "img-src 'self'; " +
+        "media-src 'none'; " +
+        "frame-src 'none'; " +
+        "child-src 'none'; " +
+        "object-src 'none'; " +
+        "base-uri 'self';"
+    );
+    next();
+});
 
 
 // Set up storage engine for multer
