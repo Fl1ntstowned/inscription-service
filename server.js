@@ -36,9 +36,7 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('Referrer-Policy', 'no-referrer');
-    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload'); // 2 years
+    // Set Content Security Policy
     res.setHeader('Content-Security-Policy', 
         "default-src 'self'; " +
         "script-src 'self'; " +
@@ -48,8 +46,18 @@ app.use((req, res, next) => {
         "frame-src 'none'; " +
         "child-src 'none'; " +
         "object-src 'none'; " +
-        "base-uri 'self';"
+        "base-uri 'none';" // Changed to 'none' to be more restrictive
     );
+
+    // Set X-Content-Type-Options
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+
+    // Set Referrer-Policy
+    res.setHeader('Referrer-Policy', 'no-referrer');
+
+    // Set Strict-Transport-Security
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload'); // 2 years
+
     next();
 });
 
