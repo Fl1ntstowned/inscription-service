@@ -35,9 +35,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
+
 app.use((req, res, next) => {
     console.log("Setting headers for request:", req.path);
-    res.setHeader('Content-Security-Policy', "default-src 'self'; ...");
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self';");
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'no-referrer');
     res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
