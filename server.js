@@ -118,7 +118,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     };
 
     try {
-        const uniSatResponse = await axios.post('https://open-api-testnet.unisat.io/v2/inscribe/order/create', orderData, {
+        const uniSatResponse = await axios.post('https://open-api.unisat.io/v2/inscribe/order/create', orderData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${process.env.UNISAT_API_KEY}` // Your UniSat API key from .env
