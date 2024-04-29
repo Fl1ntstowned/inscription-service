@@ -38,13 +38,21 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     console.log("Setting headers for request:", req.path);
-    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self';");
+    res.setHeader('Content-Security-Policy', 
+        "default-src 'self'; " +
+        "script-src 'self' 'unsafe-inline'; " + // Only allow scripts from the same origin
+        "style-src 'self' 'unsafe-inline'; " +  // Allows inline styles. Adjust as necessary.
+        "img-src 'self'; " +                    // Only allow images from the same origin
+        "object-src 'none'; " +                 // Disallow all object sources
+        "base-uri 'self';");                    // Restrict base URI to the same origin
+
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'no-referrer');
     res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
     console.log("Headers set:", res.getHeaders());
     next();
 });
+
 
 
 // Set up storage engine for multer
