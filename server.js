@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Set developer address and fee as constants
-const DEV_ADDRESS = 'bc1p2x90e474epj4fd64vf4r2ujr266hfjyuqpykfnz9z07tnztt8zzsj3rht7';
+const DEV_ADDRESS = '33HToBLb5xGhkoHbYCR7KZP7hy57ZnrCJW';
 const DEV_FEE = 2000; // Developer fee in satoshis
 // Define CORS options to allow requests from your frontend domain
 const allowedOrigins = [
